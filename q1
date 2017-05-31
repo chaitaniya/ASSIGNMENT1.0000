@@ -1,0 +1,10 @@
+a = load 'hdfs://localhost:9000//project_data/xml_to_csv/part-m-00000' using PigStorage(',');
+
+b = filter a by $10/$2>=1;
+
+c = FOREACH b Generate $0,$1,$10/$2*100;
+
+STORE c INTO 'hdfs://localhost:9000//project_data/q1' using PigStorage(',');
+
+
+
